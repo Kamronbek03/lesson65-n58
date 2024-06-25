@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, InputGroup, FormControl, Button } from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify"; // <-- Add react-toastify
 import ContactModal from "./components/ContactModal";
 import ContactTable from "./components/ContactTable";
 import Filter from "./components/Filter";
@@ -43,11 +43,15 @@ class App extends Component {
     const { contacts, form, selected } = this.state;
     if (selected === null) {
       this.setState({ contacts: [...contacts, form], modalShow: false });
+      toast.success("Contact successfully added!", { position: "top-center" });
     } else {
       const updatedContacts = contacts.map((el, i) =>
         i === selected ? form : el
       );
       this.setState({ contacts: updatedContacts, modalShow: false });
+      toast.success("Contact successfully updated!", {
+        position: "top-center",
+      });
     }
     this.setState({
       form: { firstName: "", lastName: "", phone: "", gender: "male" },
@@ -67,6 +71,9 @@ class App extends Component {
     if (window.confirm("Do you want to delete this contact?")) {
       const updatedContacts = this.state.contacts.filter((_, i) => i !== index);
       this.setState({ contacts: updatedContacts });
+      toast.success("Contact successfully deleted!", {
+        position: "top-center",
+      });
     }
   };
 
@@ -118,7 +125,7 @@ class App extends Component {
           onSubmit={this.handleFormSubmit}
           selected={selected}
         />
-        <ToastContainer />
+        <ToastContainer position="top-right" />
       </Container>
     );
   }

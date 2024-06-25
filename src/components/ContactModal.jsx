@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Modal from "react-modal";
 import { Form, Button } from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify"; // <-- Add react-toastify
 import "react-toastify/dist/ReactToastify.css";
 
 Modal.setAppElement("#root");
